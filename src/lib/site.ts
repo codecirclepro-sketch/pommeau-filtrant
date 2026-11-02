@@ -6,11 +6,11 @@ export const DOMAIN = "pommeau-filtrant.fr";
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || `https://${DOMAIN}`).replace(/\/+$/, "");
 
 /**
- * Whether search engines may index the site (meta robots, robots.txt, sitemap). Closed until Nicolas says the shop is
- * ready; scripts/check-content.mjs refuses `true` without the seller's identity and a published product.
+ * Whether search engines may index the site (meta robots, robots.txt, sitemap). Opened on 2026-11-02 with the first
+ * products and guides; scripts/check-content.mjs refuses `true` without the seller's identity and a published product.
  * Payments open separately, with a live Stripe key (see paymentOpen in src/lib/stripe.ts).
  */
-export const INDEXABLE = false;
+export const INDEXABLE = true;
 
 /** Date of the last change to the home page and the category texts (sitemap). */
 export const CONTENT_UPDATED = "2026-11-02";

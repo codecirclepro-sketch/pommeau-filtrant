@@ -36,7 +36,7 @@ export const CATEGORIES: Category[] = [
         ],
       },
     ],
-    guides: [],
+    guides: ["pommeau-de-douche-filtrant-efficace", "installer-filtre-de-douche", "changer-cartouche-pommeau-filtrant"],
   },
   {
     slug: "pommeau-de-douche-vitamine-c",
@@ -70,7 +70,7 @@ export const CATEGORIES: Category[] = [
         ],
       },
     ],
-    guides: [],
+    guides: ["pommeau-douche-vitamine-c-comment-ca-marche", "changer-cartouche-pommeau-filtrant"],
   },
   {
     slug: "filtre-de-douche",
@@ -104,7 +104,7 @@ export const CATEGORIES: Category[] = [
         ],
       },
     ],
-    guides: [],
+    guides: ["installer-filtre-de-douche", "pommeau-de-douche-filtrant-efficace"],
   },
   {
     slug: "pommeau-de-douche-anti-calcaire",
@@ -138,7 +138,7 @@ export const CATEGORIES: Category[] = [
         ],
       },
     ],
-    guides: [],
+    guides: ["detartrer-pommeau-de-douche", "pommeau-de-douche-filtrant-efficace"],
   },
   {
     slug: "recharge-pommeau-de-douche-filtrant",
@@ -172,6 +172,6 @@ export const CATEGORIES: Category[] = [
         ],
       },
     ],
-    guides: [],
+    guides: ["changer-cartouche-pommeau-filtrant", "pommeau-douche-vitamine-c-comment-ca-marche"],
   },
 ];

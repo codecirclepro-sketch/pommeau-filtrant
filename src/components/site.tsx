@@ -51,7 +51,7 @@ function Search({ id }: { id: string }) {
 }
 
 /** The guide shown on the right of the "Guides d'achat" panel. */
-const FEATURED_GUIDE = "";
+const FEATURED_GUIDE = "pommeau-de-douche-filtrant-efficace";
 
 /** The "Guides d'achat" panel: the guides by theme, one column each, and the featured guide with its picture. */
 function GuideMenu() {

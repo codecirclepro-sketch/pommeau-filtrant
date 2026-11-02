@@ -19,7 +19,7 @@ export const BOUTIQUE = {
       ],
     },
   ],
-  guides: [] as string[],
+  guides: ["pommeau-de-douche-filtrant-efficace", "installer-filtre-de-douche"],
 };
 
 /** One page per filter value worth a search: /boutique/<slug>. */

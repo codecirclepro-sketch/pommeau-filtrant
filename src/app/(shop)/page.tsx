@@ -48,8 +48,8 @@ const TILES = [
   { name: "Recharges", path: "/recharge-pommeau-de-douche-filtrant", src: "/images/accueil/rayon-recharges.jpg", alt: "Trois cartouches de rechange pour pommeau de douche, rose, grise et jaune", width: 1000, height: 760 },
 ];
 
-// The guides of the home page, once there are some.
-const GUIDES: string[] = [];
+// The guides of the home page.
+const GUIDES = ["pommeau-de-douche-filtrant-efficace", "pommeau-douche-vitamine-c-comment-ca-marche", "detartrer-pommeau-de-douche"];
 
 const STEPS: { icon: IconName; title: string; text: string }[] = [
   {
