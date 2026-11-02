@@ -1,0 +1,3 @@
+# Scripts run on the Linux server: keep Unix line endings.
+deploy/post-receive text eol=lf
+*.sh text eol=lf

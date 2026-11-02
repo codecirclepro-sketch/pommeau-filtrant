@@ -1,0 +1,584 @@
+/* The dashboard (/admin). Uses the tokens and buttons of site.css. */
+
+.adm {
+  --series: #2a78d6;
+  --series-hover: #1c5cab;
+  --grid: #e8e6e0;
+  --axis: #c9c6be;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 20px 72px;
+}
+
+.adm-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.adm-head h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+
+.adm-sub {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.adm-link {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.adm-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.adm-logout {
+  padding: 6px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.adm-login {
+  display: grid;
+  gap: 14px;
+  max-width: 360px;
+  margin: 12vh auto 0;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.adm-login h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+}
+
+.adm-login label {
+  display: grid;
+  gap: 6px;
+  font-weight: 650;
+}
+
+.adm-login input {
+  min-height: 46px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  font: inherit;
+}
+
+.adm-login-error {
+  margin: 0;
+  color: #b42318;
+  font-size: 14px;
+}
+
+.adm-periods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 18px 0 16px;
+}
+
+.adm-periods a {
+  padding: 7px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink-2);
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.adm-periods a[aria-current] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+
+.adm-kpis {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.adm-hero,
+.adm-tile {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.adm-hero p,
+.adm-tile p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.adm-hero strong {
+  display: block;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.adm-hero span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.adm-tile {
+  display: flex;
+  flex-direction: column;
+}
+
+.adm-tile strong {
+  display: block;
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 24px;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.adm-card {
+  margin-top: 16px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.adm-card h2 {
+  margin: 0 0 16px;
+  font-size: 17px;
+}
+
+.adm-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.adm-cols .adm-card {
+  margin-top: 16px;
+}
+
+.chart {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  height: 220px;
+}
+
+.chart-axis {
+  position: relative;
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-axis span {
+  position: absolute;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.chart-axis span:nth-child(1) {
+  top: 0;
+}
+
+.chart-axis span:nth-child(2) {
+  top: 50%;
+}
+
+.chart-axis span:nth-child(3) {
+  top: 100%;
+}
+
+.chart-plot {
+  position: relative;
+}
+
+.chart-grid {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chart-grid i {
+  display: block;
+  height: 1px;
+  background: var(--grid);
+}
+
+.chart-grid i:last-child {
+  background: var(--axis);
+}
+
+.chart-bars {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chart-bars li {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+  outline: none;
+}
+
+.chart-bar {
+  width: 100%;
+  max-width: 24px;
+  border-radius: 4px 4px 0 0;
+  background: var(--series);
+}
+
+.chart-bars li:hover .chart-bar,
+.chart-bars li:focus-visible .chart-bar {
+  background: var(--series-hover);
+}
+
+.chart-bars li:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--accent-bright);
+}
+
+.chart-tip {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  z-index: 2;
+  display: none;
+  padding: 6px 9px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 12.5px;
+  white-space: nowrap;
+  transform: translate(-50%, -100%);
+}
+
+.chart-bars li:nth-child(-n + 3) .chart-tip {
+  left: 0;
+  transform: translate(0, -100%);
+}
+
+.chart-bars li:nth-last-child(-n + 3) .chart-tip {
+  right: 0;
+  left: auto;
+  transform: translate(0, -100%);
+}
+
+.chart-bars li:hover .chart-tip,
+.chart-bars li:focus-visible .chart-tip {
+  display: block;
+}
+
+.chart-x {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0 0 44px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.adm-table-toggle summary {
+  margin-top: 16px;
+  color: var(--ink-2);
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.adm-scroll {
+  overflow-x: auto;
+}
+
+.adm-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.adm-table th,
+.adm-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.adm-table th {
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.adm-status {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.adm-status-paid {
+  background: var(--ok-soft);
+  color: #0f5f3c;
+}
+
+.adm-status-pending {
+  background: #fff4d6;
+  color: #7a5300;
+}
+
+.adm-status-failed {
+  background: #fdecec;
+  color: #a42323;
+}
+
+.rank {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rank li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 12px;
+  padding: 7px 0;
+  font-size: 14px;
+}
+
+.rank-label {
+  overflow-wrap: anywhere;
+}
+
+.rank-n {
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+}
+
+.rank-bar {
+  grid-column: 1 / -1;
+  height: 4px;
+  border-radius: 0 2px 2px 0;
+  background: var(--series);
+}
+
+.adm-empty {
+  margin: 0;
+  color: var(--muted);
+}
+
+.adm-note {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Purchase funnel: one row per step, bars scaled to the visits. */
+.funnel {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.funnel li {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr) 64px 190px;
+  gap: 14px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.funnel-track {
+  height: 10px;
+  border-radius: 5px;
+  background: var(--ground);
+}
+
+.funnel-bar {
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+  background: var(--series);
+}
+
+.funnel-n {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.funnel-rate {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Latest events: time, then what happened. */
+.adm-events {
+  display: grid;
+  gap: 2px;
+  max-height: 380px;
+  margin: 0;
+  overflow-y: auto;
+  padding: 0;
+  list-style: none;
+}
+
+.adm-events li {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.adm-events time {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.adm-checks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.adm-checks li {
+  display: grid;
+  grid-template-columns: 24px 190px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+}
+
+.adm-checks li span:last-child {
+  color: var(--ink-2);
+}
+
+.adm-dot {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.adm-dot-good {
+  background: #0c8a0c;
+}
+
+.adm-dot-warning {
+  background: #fab219;
+  color: var(--ink);
+}
+
+.adm-dot-critical {
+  background: #d03b3b;
+}
+
+.adm-nocount {
+  margin: 16px 0 0;
+  color: var(--ink-2);
+  font-size: 14px;
+}
+
+.adm-nocount button {
+  margin-left: 6px;
+  padding: 5px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--paper);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+
+@media (max-width: 960px) {
+  .adm-kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .adm-hero {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .adm {
+    padding-inline: 16px;
+  }
+
+  .adm-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .adm-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .adm-checks li {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+
+  .funnel li {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 12px;
+  }
+
+  .funnel-track {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .funnel-rate {
+    grid-column: 1 / -1;
+  }
+
+  .adm-checks li span:last-child {
+    grid-column: 2;
+  }
+}

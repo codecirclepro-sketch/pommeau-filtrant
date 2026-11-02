@@ -1,0 +1,34 @@
+#!/bin/bash
+# Git hook installed on the VPS at ~/repos/pommeau-filtrant.git/hooks/post-receive.
+# A push to main checks the code out, installs, builds, then (re)starts this app only. It touches nothing else:
+# no other app's folder, pm2 process or nginx file.
+set -euo pipefail
+
+APP_DIR="$HOME/pommeau-filtrant"
+REPO_DIR="$HOME/repos/pommeau-filtrant.git"
+DATA_DIR="$HOME/pommeau-filtrant-data"
+
+deploy=0
+while read -r _old _new ref; do
+  [ "$ref" = "refs/heads/main" ] && deploy=1
+done
+[ "$deploy" = 1 ] || { echo "Push hors de main : pas de deploiement."; exit 0; }
+
+unset GIT_DIR GIT_WORK_TREE
+export NVM_DIR="$HOME/.nvm"
+set +eu; . "$NVM_DIR/nvm.sh"; set -eu
+
+mkdir -p "$APP_DIR"
+mkdir -p "$DATA_DIR" && chmod 700 "$DATA_DIR"
+git --git-dir="$REPO_DIR" --work-tree="$APP_DIR" checkout -f main
+cd "$APP_DIR"
+[ -f .env.local ] || { echo "Il manque $APP_DIR/.env.local (voir docs/mise-en-ligne.md) : arret."; exit 1; }
+chmod 600 .env.local
+
+echo "==> npm ci"
+nice -n 10 npm ci --no-audit --no-fund
+echo "==> next build"
+nice -n 10 npm run build
+echo "==> pm2"
+pm2 startOrRestart ecosystem.config.cjs --update-env
+echo "==> Deploiement termine : $(git --git-dir="$REPO_DIR" rev-parse --short main)"
