@@ -4,7 +4,7 @@ description: "Détartrer un pommeau de douche au vinaigre blanc ou à l'acide ci
 category: pommeau-de-douche-anti-calcaire
 date: 2026-11-02
 image: /images/guides/detartrer-pommeau-de-douche.jpg
-imageAlt: Pommeau de douche à poignée transparente remplie de billes, vu de face, avec un jet d'eau dense
+imageAlt: Une douchette chromée qui trempe dans un saladier de vinaigre blanc posé sur un lavabo, à côté d'une vieille brosse à dents
 ---
 
 Des jets qui partent de travers, des trous bouchés, un débit qui faiblit : c'est le calcaire. Il se dépose à chaque douche, surtout là où l'eau est dure. Un pommeau se détartre pourtant en quelques minutes de travail, avec des produits que vous avez sans doute déjà.

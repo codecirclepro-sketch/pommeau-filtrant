@@ -4,7 +4,7 @@ description: "Installer un filtre de douche à visser ou un pommeau filtrant san
 category: filtre-de-douche
 date: 2026-11-02
 image: /images/guides/installer-filtre-de-douche.jpg
-imageAlt: Filtre de douche chromé vissé entre le bras de douche et la tête, avec sa cartouche multicouche visible en coupe
+imageAlt: Deux mains vissent un filtre de douche chromé entre le bras de douche et la pomme, avec un rouleau de ruban téflon posé sur la tablette
 ---
 
 Un pommeau filtrant ou un filtre de douche s'installe à la main, en quelques minutes, sans couper l'eau de toute la maison. Voici comment faire, et les quelques pièges à éviter.

@@ -4,7 +4,7 @@ description: "Pommeau de douche filtrant : ce qu'il retient vraiment (chlore, pa
 category: pommeau-de-douche-filtrant
 date: 2026-11-02
 image: /images/guides/pommeau-de-douche-filtrant-efficace.jpg
-imageAlt: Pommeau de douche filtrant ALTHY à poignée transparente, devant sa boîte, avec une cartouche vitamine C jaune et des filtres de rechange
+imageAlt: Une douchette chromée fixée sur sa barre, d'où sort un jet d'eau fin, dans une douche à l'italienne aux carreaux gris clair
 ---
 
 Oui, à condition d'en attendre la bonne chose. Un pommeau filtrant peut réduire le chlore de l'eau de la douche et arrêter une partie des particules. Il ne rend pas l'eau douce, et ce n'est pas un soin. Voici comment faire la part des choses.
