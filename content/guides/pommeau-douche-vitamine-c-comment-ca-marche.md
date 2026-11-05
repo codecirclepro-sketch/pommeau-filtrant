@@ -4,7 +4,8 @@ description: "Comment marche un pommeau de douche à la vitamine C : ce que cont
 category: pommeau-de-douche-vitamine-c
 date: 2026-11-02
 image: /images/guides/pommeau-douche-vitamine-c-comment-ca-marche.jpg
-imageAlt: Pommeau de douche filtrant gris anthracite à tête ovale, à côté de sa boîte et de sa cartouche vitamine C jaune
+imageAlt: Une douchette transparente dont on voit la cartouche jaune, posée sur du marbre blanc près de rondelles de citron
+updated: 2026-11-05
 ---
 
 Dans un pommeau à la vitamine C, l'eau traverse une cartouche cachée dans la poignée avant de sortir par la grille. Le principe est simple, et il a ses limites. Voici ce qui se passe vraiment entre le flexible et le jet.

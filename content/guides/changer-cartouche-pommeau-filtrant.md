@@ -4,7 +4,8 @@ description: "Quand changer la cartouche d'un pommeau de douche filtrant ou d'un
 category: recharge-pommeau-de-douche-filtrant
 date: 2026-11-02
 image: /images/guides/changer-cartouche-pommeau-filtrant.jpg
-imageAlt: Quatre cartouches rondes et jaunes à la vitamine C pour pommeau de douche ALTHY
+imageAlt: Au-dessus d'un lavabo, deux mains changent la cartouche d'une douchette transparente ; l'ancienne, grisée, attend à côté
+updated: 2026-11-05
 ---
 
 Une cartouche filtrante travaille à chaque douche, et elle s'use. Passé sa durée, elle ne retient presque plus rien. Voici comment savoir quand la changer, et comment s'y prendre.

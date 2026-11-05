@@ -3,6 +3,7 @@ title: "Installer un filtre de douche ou un pommeau filtrant"
 description: "Installer un filtre de douche à visser ou un pommeau filtrant sans plombier : le raccord standard, le joint, le ruban téflon, le sens de l'eau et les premiers essais."
 category: filtre-de-douche
 date: 2026-11-02
+updated: 2026-11-05
 image: /images/guides/installer-filtre-de-douche.jpg
 imageAlt: Deux mains vissent un filtre de douche chromé entre le bras de douche et la pomme, avec un rouleau de ruban téflon posé sur la tablette
 ---
@@ -11,7 +12,7 @@ Un pommeau filtrant ou un filtre de douche s'installe à la main, en quelques mi
 
 ## Le raccord standard
 
-En France, la plupart des flexibles, des douchettes et des bras de douche se raccordent par un filetage de 15 × 21, que l'on appelle aussi 1/2 pouce ou G1/2. C'est le raccord de nos pommeaux filtrants : ils se vissent sur un flexible ordinaire. En cas de doute, dévissez votre douchette actuelle et comparez avec la fiche du produit.
+En France, la plupart des flexibles, des douchettes et des bras de douche se raccordent par un filetage de 15 × 21, que l'on appelle aussi 1/2 pouce ou G1/2. C'est le raccord annoncé pour nos pommeaux ALTHY, à billes et trois jets, qui se vissent donc sur un flexible ordinaire. En cas de doute, dévissez votre douchette actuelle et comparez avec la fiche du produit.
 
 ## Installer un pommeau filtrant
 

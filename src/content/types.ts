@@ -27,6 +27,18 @@ export type Category = {
   guides: string[];
   /** Filters above the products, in this order; `all` is the choice that shows every product. */
   filters?: { key: FilterKey; label: string; all: string }[];
+  /**
+   * Picture above the buying advice, 1200 × 800, under public/images/ (rayons/ or guides/): a product on sale or a
+   * generic scene, never another brand's product.
+   */
+  image?: { src: string; alt: string };
+  /**
+   * Columns of the table that compares the products under the grid: spec labels ("Filtration|Composition" shows the
+   * first one a product has), or "recharge" for the refill we sell for it (refills are then left out of the rows).
+   */
+  compare?: string[];
+  /** Questions and answers under the advice, in plain text, with their FAQPage structured data. */
+  faq?: { q: string; a: string }[];
 };
 
 /** What products can be filtered on: the values come from each product's `filters`. */

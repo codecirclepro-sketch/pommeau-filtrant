@@ -87,6 +87,15 @@ for (const c of CATEGORIES) {
   for (const field of ["title", "description", "h1"]) if (!norm(c[field]).includes(k)) say(where, `keyword "${c.keyword}" missing from ${field}`);
   if (c.sections.length < 3) say(where, "needs at least 3 sections of buying advice");
   for (const g of c.guides) if (!guides.some((x) => x.slug === g)) say(where, `unknown guide "${g}"`);
+  if (c.image) {
+    if (!/^\/images\/(rayons|guides)\/[a-z0-9-]+\.jpg$/.test(c.image.src)) say(where, "image must be /images/rayons/<name>.jpg or a guide's picture");
+    else if (!existsSync(new URL(`public${c.image.src}`, root))) say(where, `image not found: public${c.image.src}`);
+    if (!c.image.alt) say(where, "an image needs alt");
+  }
+  for (const col of c.compare ?? [])
+    if (col !== "recharge" && !PRODUCTS.some((p) => col.split("|").some((l) => p.specs.some((s) => s.label === l))))
+      say(where, `compare column "${col}" matches no product's spec`);
+  for (const f of c.faq ?? []) if (!f.q?.trim() || !f.a?.trim()) say(where, "a question of the FAQ is empty");
 }
 
 // ---------------------------------------------------------------------------------------------------- Shop pages
@@ -191,7 +200,10 @@ for (const g of guides) if (!menuPaths.includes(`/guides/${g.slug}`)) say("src/c
 // ---------------------------------------------------------------------------------------------------- Links and repeated sentences
 
 const texts = [
-  ...hubs.map((h) => ({ where: h.where, text: [h.intro, ...h.sections.flatMap((s) => s.body)].join(" ") })),
+  ...hubs.map((h) => ({
+    where: h.where,
+    text: [h.intro, ...h.sections.flatMap((s) => s.body), ...(h.faq ?? []).flatMap((f) => [f.q, f.a])].join(" "),
+  })),
   { where: "/boutique", text: [BOUTIQUE.intro, ...BOUTIQUE.sections.flatMap((s) => s.body)].join(" ") },
   ...guides.map((g) => ({ where: `/guides/${g.slug}`, text: g.body })),
   ...PRODUCTS.filter((p) => !p.draft).map((p) => ({ where: `/produit/${p.slug}`, text: `${p.summary} ${p.body}` })),

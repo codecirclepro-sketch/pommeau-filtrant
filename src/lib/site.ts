@@ -13,7 +13,7 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || `https://${DOMAIN}`
 export const INDEXABLE = true;
 
 /** Date of the last change to the home page and the category texts (sitemap). */
-export const CONTENT_UPDATED = "2026-11-02";
+export const CONTENT_UPDATED = "2026-11-05";
 
 /**
  * Draft products appear while the site is closed to search engines (the live site is then a preview for Nicolas),

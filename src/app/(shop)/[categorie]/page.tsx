@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Icon } from "@/components/icon";
@@ -5,7 +6,17 @@ import { FilteredGrid } from "@/components/filtered-grid";
 import { gridItems, ProductGrid } from "@/components/product";
 import { Breadcrumb, JsonLd } from "@/components/site";
 import { CATEGORIES } from "@/content/categories";
-import { categoryIndexable, categoryPath, categoryProducts, getCategory, productPath } from "@/lib/catalogue";
+import type { Category, Product } from "@/content/types";
+import {
+  categoryIndexable,
+  categoryPath,
+  categoryProducts,
+  formatPrice,
+  getCategory,
+  isRefill,
+  productPath,
+  refillFor,
+} from "@/lib/catalogue";
 import { getGuide } from "@/lib/guides";
 import { pageMeta } from "@/lib/seo";
 import { url } from "@/lib/site";
@@ -26,12 +37,75 @@ export async function generateMetadata({ params }: PageProps<"/[categorie]">) {
   });
 }
 
+/** One cell of the comparison table: the refill we sell, or the first spec the product has among the labels. */
+function CompareCell({ product, column }: { product: Product; column: string }) {
+  if (column === "recharge") {
+    const refill = refillFor(product);
+    return refill ? (
+      <td>
+        <Link href={productPath(refill)}>{refill.name}</Link>, {formatPrice(refill.price)}
+      </td>
+    ) : (
+      <td className="compare-none">Pas encore en vente</td>
+    );
+  }
+  const spec = column
+    .split("|")
+    .map((label) => product.specs.find((s) => s.label === label))
+    .find((s) => s !== undefined);
+  return spec ? <td>{spec.value}</td> : <td className="compare-none">Non précisé</td>;
+}
+
+/** The category's products side by side, on the columns of `compare`; nothing under two products. */
+function CompareTable({ category, list }: { category: Category; list: Product[] }) {
+  const columns = category.compare ?? [];
+  const rows = columns.includes("recharge") ? list.filter((p) => !isRefill(p)) : list;
+  if (!columns.length || rows.length < 2) return null;
+  return (
+    <section className="wrap compare" aria-labelledby="comparer">
+      <h2 id="comparer" className="section-title">
+        Comparer nos modèles
+      </h2>
+      <div className="compare-scroll">
+        <table className="compare-table">
+          <thead>
+            <tr>
+              <th scope="col">Modèle</th>
+              {columns.map((c) => (
+                <th key={c} scope="col">
+                  {c === "recharge" ? "Recharge en vente" : c.split("|")[0]}
+                </th>
+              ))}
+              <th scope="col">Prix</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((p) => (
+              <tr key={p.slug}>
+                <th scope="row">
+                  <Link href={productPath(p)}>{p.name}</Link>
+                </th>
+                {columns.map((c) => (
+                  <CompareCell key={c} product={p} column={c} />
+                ))}
+                <td className="compare-price">{formatPrice(p.price)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="compare-note">Caractéristiques annoncées par chaque fabricant, prix TTC.</p>
+    </section>
+  );
+}
+
 export default async function CategoryPage({ params }: PageProps<"/[categorie]">) {
   const category = getCategory((await params).categorie);
   if (!category) notFound();
   const list = categoryProducts(category.slug);
   const guides = category.guides.map(getGuide).filter((g) => g !== undefined);
   const others = CATEGORIES.filter((c) => c.slug !== category.slug);
+  const faq = category.faq ?? [];
 
   return (
     <>
@@ -43,6 +117,15 @@ export default async function CategoryPage({ params }: PageProps<"/[categorie]">
             "@type": "ItemList",
             name: category.h1,
             itemListElement: list.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: url(productPath(p)), name: p.name })),
+          }}
+        />
+      )}
+      {faq.length > 0 && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faq.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
           }}
         />
       )}
@@ -76,8 +159,21 @@ export default async function CategoryPage({ params }: PageProps<"/[categorie]">
         )}
       </section>
 
+      <CompareTable category={category} list={list} />
+
       <div className="wrap split">
         <article className="prose">
+          {category.image && (
+            <figure className="cat-figure">
+              <Image
+                src={category.image.src}
+                alt={category.image.alt}
+                width={1200}
+                height={800}
+                sizes="(max-width: 900px) 100vw, 760px"
+              />
+            </figure>
+          )}
           {category.sections.map((s) => (
             <section key={s.h2}>
               <h2>{s.h2}</h2>
@@ -112,6 +208,26 @@ export default async function CategoryPage({ params }: PageProps<"/[categorie]">
           </div>
         </aside>
       </div>
+
+      {faq.length > 0 && (
+        <section className="wrap pdp-faq cat-faq" aria-labelledby="questions">
+          <p className="eyebrow">FAQ</p>
+          <h2 id="questions" className="section-title">
+            Questions fréquentes
+          </h2>
+          <div className="faq">
+            {faq.map((f, i) => (
+              <details key={f.q} open={i === 0}>
+                <summary>
+                  <span>{f.q}</span>
+                  <Icon name="plus" size={20} />
+                </summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
     </>
   );
 }

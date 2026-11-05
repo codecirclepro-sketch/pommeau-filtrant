@@ -36,6 +36,13 @@ export const facets = () => FACETS.filter(facetIndexable);
 /** A category is indexed (and in the sitemap) once it lists a published product. */
 export const categoryIndexable = (c: Category) => categoryProducts(c.slug).some((p) => !p.draft);
 
+/** Whether the product is a refill (its filter value `type` is "Recharge"). */
+export const isRefill = (p: Product) => filterValues(p).type?.includes("Recharge") ?? false;
+
+/** The refill we sell for a product: the first of its `related` products that is a refill. */
+export const refillFor = (p: Product) =>
+  p.related?.map(getProduct).find((r): r is Product => r !== undefined && isRefill(r));
+
 export const productPath = (p: Product) => `/produit/${p.slug}`;
 export const categoryPath = (c: Category) => `/${c.slug}`;
 
